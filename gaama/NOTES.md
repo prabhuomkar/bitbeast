@@ -1,9 +1,10 @@
 # Notes
 
 ## Roadmap
-- [ ] Should zip or upload seperate files
+- [x] Should zip or upload seperate files
+- [ ] Better exception management
+- [ ] Logging and better console updates
 - [ ] C++/Java/Go implementation as examples
-- [ ] Different extensions or compression for model artifact
-- [ ] Support for semantic versioning
-- [ ] Overwrite the existing release model artifact
 - [ ] More details while publishing release
+- [ ] Different extensions or compression for model artifact
+- [ ] Overwrite the existing release model artifact
