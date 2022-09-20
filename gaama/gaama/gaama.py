@@ -1,11 +1,17 @@
 """GaAMA"""
 from datetime import date
 import io
+import logging
 import os
 from typing import List
 from zipfile import ZipFile
+
 from gaama.github import GitHub
 
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class GaAMA:
     """GaAMA"""
@@ -26,6 +32,7 @@ class GaAMA:
 
     def publish(self, tag: str, files: List[str], zip_files: bool = True) -> None:
         """publish model artifacts"""
+        logger.info(f'publishing total {len(files)} github assets with tag: {tag}, zip: {zip_files}')
         # get github release id
         release_id = self._create_release(tag)
         # if zip is enabled, zip all the artifacts
@@ -44,6 +51,7 @@ class GaAMA:
 
     def download(self, tag: str, path: str = '.') -> None:
         """download model artifacts"""
+        logger.info(f'downloading github assets with tag: {tag}')
         # get list of file name and file download url
         artifacts = self.github.get_github_release_assets(tag)
         for artifact in artifacts:

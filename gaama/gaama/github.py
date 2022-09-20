@@ -3,6 +3,8 @@ from typing import List
 from requests import get, post, Response
 from requests.auth import HTTPBasicAuth
 
+from gaama.exceptions import DownloadError, PublishError
+
 
 HEADER_ACCEPT = 'application/vnd.github+json'
 API_BASE_URL = 'https://api.github.com'
@@ -24,7 +26,7 @@ class GitHub:
         if res.status_code == 201:
             result = res.json()
             return result
-        raise Exception(res.text)
+        raise PublishError(res.text)
 
     def upload_github_release_assets(self, release_id: str, file: str) -> None:
         """upload github release assets"""
@@ -33,7 +35,7 @@ class GitHub:
         res = post(f'{UPLOADS_BASE_URL}/repos/{self.owner}/{self.repo}/releases/{release_id}/assets?name={file}',
             auth=self.auth, headers={'Accept': HEADER_ACCEPT, 'Content-Type': 'application/octet-stream'}, data=data)
         if res.status_code != 201:
-            raise Exception(res.text)
+            raise PublishError(res.text)
 
     def get_github_release_assets(self, tag: str) -> List[dict]:
         """get github release"""
@@ -50,7 +52,7 @@ class GitHub:
             for gh_asset in gh_assets:
                 assets.append({'name': gh_asset['name'], 'url': gh_asset['url']})
             return assets
-        raise Exception(res.text)
+        raise DownloadError(res.text)
 
     def download_github_release_assets(self, artifact_url: str) -> Response:
         """download github release assets"""
