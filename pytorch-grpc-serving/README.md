@@ -29,7 +29,7 @@ python torchscript.py run
 ```
 
 ### Setting up gRPC Service
-- Refer [protos/inference.proto] for Protocol Buffer definition of the gRPC Service
+- Refer [protos/inference.proto](protos/inference.proto) for Protocol Buffer definition of the gRPC Service
 - Run following command to generate the stubs:
 ```bash
 make proto
