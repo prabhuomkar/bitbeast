@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message HealthResponse {
+    string status = 1;
+}
+
+message PredictionRequest {
+    bytes input = 1;
+}
+
+message PredictionResponse {
+    bytes prediction = 1;
+}
+
+service Inference {
+    // Health will return status of service
+    rpc Health(google.protobuf.Empty) returns (HealthResponse) {}
+    // Prediction will run inference using model 
+    rpc Prediction(PredictionRequest) returns (PredictionResponse) {}
+}

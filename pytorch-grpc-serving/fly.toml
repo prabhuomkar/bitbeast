@@ -1,0 +1,19 @@
+# fly.toml file generated for pytorch-serving on 2022-10-05T19:06:30+05:30
+
+app = "pytorch-serving"
+
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = []
+    port = 8000
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"

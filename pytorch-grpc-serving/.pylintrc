@@ -1,0 +1,5 @@
+[MASTER]
+ignore-patterns=.*_pb2.py,.*_grpc.py
+disable=consider-using-with,super-with-arguments,bare-except
+[TYPECHECK]
+generated-members=torch.*,inference_pb2.*
