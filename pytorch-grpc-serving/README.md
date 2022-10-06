@@ -64,6 +64,11 @@ python client.py <url>
 ```
 python client.py pytorch-serving.fly.dev:8000
 ```
+- Example Output:
+```
+health: UP
+prediction: {"pizza": 0.44644981622695923, "potpie": 0.009865873493254185, "hot pot": 0.007180684246122837, "consomme": 0.005226321052759886, "spatula": 0.0047011710703372955}
+```
 
 ## License
 This project is licensed under [Apache License 2.0](LICENSE).
