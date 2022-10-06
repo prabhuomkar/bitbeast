@@ -1,7 +1,17 @@
 # pytorch-grpc-serving
 Serving PyTorch Models for Inference as gRPC API
 
-## Getting Started
+## Directory Structure
+
+- [model](model) - example torchscript module with example image and class to label mapping file
+- [protos](protos) - protocol buffer defintion for gRPC service
+- [client.py](client.py) - gRPC client example for connecting to gRPC server to run inference on sample file in [model](model) directory
+- [Dockerfile](Dockerfile) - containerize the gRPC server to for deployment
+- [Makefile](Makefile) - commands for generating stubs, running gRPC service, building docker image, other chores
+- [requirements.txt](requirements.txt) - python requirements for running this service
+- [server.py](server.py) - gRPC server for loading and running model inference
+
+## Getting Started 
 
 ### Releasing Model
 - Refer [model/torchscript.py](model/torchscript.py) for conversion of torchvision model to TorchScript module
