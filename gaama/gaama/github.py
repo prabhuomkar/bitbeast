@@ -17,10 +17,11 @@ class GitHub:
         self.owner = owner
         self.repo = repository
 
-    def create_github_release(self, tag: str) -> str:
+    def create_github_release(self, tag: str, **kwargs) -> str:
         """create github release"""
-        # TODO(omkar): allow customizations and add more details to each release
         payload = {'tag_name': tag}
+        for key, value in kwargs.items():
+            payload[key] = value
         res = post(f'{API_BASE_URL}/repos/{self.owner}/{self.repo}/releases',
             auth=self.auth, headers={'Accept': HEADER_ACCEPT}, json=payload)
         if res.status_code == 201:

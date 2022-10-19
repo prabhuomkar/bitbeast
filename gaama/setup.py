@@ -3,7 +3,7 @@ import subprocess
 from setuptools import setup, find_packages
 
 
-version = "0.2.0"
+version = "0.3.0"
 sha = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip().decode("utf-8") 
 package_name = "gaama"
 

@@ -23,18 +23,18 @@ class GaAMA:
         # TODO(omkar): maybe support semVer?
         return str(date.today()).replace('-', '.') # YYYY.MM.DD
 
-    def _create_release(self, tag: str) -> str:
+    def _create_release(self, tag: str, **kwargs) -> str:
         """create github release"""
         if tag is None:
             tag = self._get_tag()
-        res = self.github.create_github_release(tag)
+        res = self.github.create_github_release(tag, **kwargs)
         return res['id']
 
-    def publish(self, tag: str, files: List[str], zip_files: bool = True) -> None:
+    def publish(self, tag: str, files: List[str], zip_files: bool = True, **kwargs) -> None:
         """publish model artifacts"""
         logger.info(f'publishing total {len(files)} github assets with tag: {tag}, zip: {zip_files}')
         # get github release id
-        release_id = self._create_release(tag)
+        release_id = self._create_release(tag, **kwargs)
         # if zip is enabled, zip all the artifacts
         if zip_files:
             zip_file = f'{tag}.zip'
