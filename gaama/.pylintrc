@@ -1,8 +1,4 @@
-[MASTER]
-ignore=CVS, .svn, .git
-
 [MESSAGES CONTROL]
 disable=missing-timeout
-
 [FORMAT]
 max-line-length=120
