@@ -9,6 +9,7 @@ For example, you can use some of these projects in your ML training workflow, CI
 ## Projects
 - [GaAMA: GitHub-as-Artifactory for Model Artifacts](gaama)
 - [pytorch-grpc-serving: Serving PyTorch Models for Inference as gRPC API](pytorch-grpc-serving)
+- [TorchLego: Model Serving as Code for PyTorch](torchlego)
 
 ## License
-This repository will not have a common license. Check individual projects for their licensing.
+This repository does not have a common license. Check individual projects for their licensing.

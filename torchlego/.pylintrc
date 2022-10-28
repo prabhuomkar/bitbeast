@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+ignore-patterns=.*_pb2.py,.*_grpc.py
+[TYPECHECK]
+generated-members=torch.*
+[MASTER]
+disable=too-few-public-methods,duplicate-code,missing-timeout,bare-except
+extension-pkg-whitelist=pydantic
+[FORMAT]
+max-line-length=120
