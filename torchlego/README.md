@@ -1,8 +1,6 @@
 # TorchLego
 Model Serving as Code For PyTorch
 
-TODO(omkar): Add a paragraph about TorchLego and its functionality.
-
 ## Getting Started
 TODO(omkar): Add some basic concepts/links/tutorials to understand more.
 
