@@ -1,0 +1,6 @@
+Pillow
+pydantic
+pyyaml
+sanic
+torch
+torchvision

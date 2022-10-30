@@ -1,0 +1,3 @@
+# TorchLego Documentation
+
+## Configuration
