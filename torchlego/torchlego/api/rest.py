@@ -1,5 +1,6 @@
 """REST API"""
 import logging
+import os
 
 from sanic import Sanic, response
 
@@ -33,4 +34,4 @@ def start_http(port: int) -> None:
     logging.info('starting HTTP server on: %d', port)
     app = Sanic('TorchLego', log_config=LOGGING_CONFIG)
     add_routes(app)
-    app.run(host='0.0.0.0', port=port, debug=False, access_log=False)
+    app.run(host='0.0.0.0', port=port, workers=int(os.getenv("HTTP_WORKERS", 1)), debug=False, access_log=False)
