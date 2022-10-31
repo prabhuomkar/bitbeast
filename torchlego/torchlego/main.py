@@ -11,4 +11,4 @@ logging.config.dictConfig(LOGGING_CONFIG)
 
 if __name__ == '__main__':
     initialize_models()
-    start_http(os.getenv("HTTP_PORT", 8080))
+    start_http(int(os.getenv("HTTP_PORT", 8080)))
