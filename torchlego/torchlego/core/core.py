@@ -1,4 +1,5 @@
 """TorchLego Core"""
+import os
 from typing import Dict, Any
 import logging
 import requests
@@ -12,9 +13,10 @@ from core.preprocess import derive_preprocess
 # this will store the derived model ready for execution
 MODELS = {}
 
-def initialize_models() -> None:
+def init_models() -> None:
     """Derive model by mapping config to executable functions"""
-    with open("models.yaml", encoding="UTF-8") as yaml_file:
+    model_cfg_file = os.getenv("MODEL_CONFIG", "models.yaml")
+    with open(model_cfg_file, encoding="UTF-8") as yaml_file:
         file_contents = yaml_file.read()
     cfg = process_yaml_config(file_contents)
     logging.debug("derived yaml config: %s", cfg)

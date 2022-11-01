@@ -1,2 +1,2 @@
 """TorchLego API"""
-from .rest import start_http
+from .rest import init_api_http

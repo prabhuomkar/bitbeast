@@ -29,9 +29,10 @@ def add_routes(app: Sanic) -> None:
     app.add_route(models, "/v1/models", methods=["GET"])
     app.add_route(prediction, "/v1/models/<model_name:str>", methods=["POST"])
 
-def start_http(port: int) -> None:
+def init_api_http() -> None:
     """start REST API"""
+    port = int(os.getenv("HTTP_PORT", "8080"))
     logging.info('starting HTTP server on: %d', port)
     app = Sanic('TorchLego', log_config=LOGGING_CONFIG)
     add_routes(app)
-    app.run(host='0.0.0.0', port=port, workers=int(os.getenv("HTTP_WORKERS", 1)), debug=False, access_log=False)
+    app.run(host='0.0.0.0', port=port, workers=int(os.getenv("HTTP_WORKERS", "1")), debug=False, access_log=False)

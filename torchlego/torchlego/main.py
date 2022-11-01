@@ -1,14 +1,12 @@
 """TorchLego"""
-import os
-import logging
-import logging.config
+from dotenv import load_dotenv
+load_dotenv()
 
-from config import LOGGING_CONFIG
-from core import initialize_models
-from api import start_http
-
-logging.config.dictConfig(LOGGING_CONFIG)
+from config import init_logging
+from core import init_models
+from api import init_api_http
 
 if __name__ == '__main__':
-    initialize_models()
-    start_http(int(os.getenv("HTTP_PORT", 8080)))
+    init_logging()
+    init_models()
+    init_api_http()
