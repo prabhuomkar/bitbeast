@@ -13,10 +13,11 @@ from core.preprocess import derive_preprocess
 # this will store the derived model ready for execution
 MODELS = {}
 
+
 def init_models() -> None:
     """Derive model by mapping config to executable functions"""
     model_cfg_file = os.getenv("MODEL_CONFIG", "models.yaml")
-    with open(model_cfg_file, encoding="UTF-8") as yaml_file:
+    with open("model-config/"+model_cfg_file, encoding="UTF-8") as yaml_file:
         file_contents = yaml_file.read()
     cfg = process_yaml_config(file_contents)
     logging.debug("derived yaml config: %s", cfg)
@@ -30,7 +31,9 @@ def init_models() -> None:
             MODELS[model.name]["executable"] = executable
             logging.info("created executable for model: %s", model.name)
         else:
-            logging.error("error creating executable for model: %s", model.name)
+            logging.error(
+                "error creating executable for model: %s", model.name)
+
 
 def get_models() -> Dict[Any, Any]:
     """Get derived models"""
@@ -38,6 +41,7 @@ def get_models() -> Dict[Any, Any]:
     for data in MODELS.values():
         models.append(data["config"])
     return models
+
 
 def download_model(model_name: str, link: str) -> bool:
     """Download model for inference"""
@@ -52,6 +56,7 @@ def download_model(model_name: str, link: str) -> bool:
         logging.error("error downloading model: %s url: %s", model_name, link)
     return False
 
+
 def create_executable(model: ModelConfig) -> Any:
     """Create runtime executable from stages"""
     downloaded = download_model(model.name, model.download)
@@ -61,6 +66,7 @@ def create_executable(model: ModelConfig) -> Any:
         inference = load(f"{model.name}")
         return [model_input] + preprocess + [inference]
     return None
+
 
 def run_executable(model_name: str, request: Any) -> bytes:
     """Run executable to get output from derived model"""

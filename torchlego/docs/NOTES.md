@@ -1,11 +1,12 @@
 # Notes
 
 ## Roadmap
+
 - [x] Configurable HTTP/gRPC API
 - [x] YAML Configuration: Preprocess, Inference
 - [x] Computer Vision Tasks
 - [ ] Error Handling
-- [ ] Release Docker Image
+- [ ] Release Docker Image (cpu/gpu versions as per python)
 - [ ] NLP Tasks
 
 ## YAML Example
@@ -17,7 +18,7 @@ models:
     gpu: true
     stages:
       input: file
-      preprocess: 
+      preprocess:
         default: image_classification
   - name: custom-resnet50
     download: https://www.dropbox.com/s/tqfc8ou1w3hx4gg/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt?dl=1
