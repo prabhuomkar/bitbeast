@@ -5,8 +5,8 @@
 - [x] Configurable HTTP/gRPC API
 - [x] YAML Configuration: Preprocess, Inference
 - [x] Computer Vision Tasks
+- [x] Release Docker Image (cpu version)
 - [ ] Error Handling
-- [ ] Release Docker Image (cpu version)
 - [ ] NLP Tasks
 - [ ] GPU support
 - [ ] Release Docker Image (gpu version)
