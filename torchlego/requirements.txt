@@ -3,5 +3,5 @@ pydantic
 python-dotenv
 pyyaml
 sanic
-torch
-torchvision
+https://download.pytorch.org/whl/cpu/torch-1.13.0%2Bcpu-cp310-cp310-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.14.0%2Bcpu-cp310-cp310-linux_x86_64.whl

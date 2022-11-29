@@ -6,8 +6,10 @@
 - [x] YAML Configuration: Preprocess, Inference
 - [x] Computer Vision Tasks
 - [ ] Error Handling
-- [ ] Release Docker Image (cpu/gpu versions as per python)
+- [ ] Release Docker Image (cpu version)
 - [ ] NLP Tasks
+- [ ] GPU support
+- [ ] Release Docker Image (gpu version)
 
 ## YAML Example
 
