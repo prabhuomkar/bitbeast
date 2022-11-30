@@ -1,6 +1,8 @@
-# TorchLego
-
-Model Serving as Code for PyTorch
+<h3 align="center">
+  <img src="torchlego.png" width="50%">
+  <br />
+  Model Serving as Code for PyTorch
+</h3>
 
 ## Getting Started
 
