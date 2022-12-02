@@ -71,4 +71,4 @@ prediction: {"pizza": 0.44644981622695923, "potpie": 0.009865873493254185, "hot 
 ```
 
 ## License
-This project is licensed under [Apache License 2.0](LICENSE).
+This project is licensed under [MIT License](LICENSE).
