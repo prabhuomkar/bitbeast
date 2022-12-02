@@ -9,15 +9,47 @@ Supported Libraries:
 
 ### Image Classification
 
-TBD models
+- [MobileNetV3 from TIMM](https://huggingface.co/docs/timm/models#mobilenetv3)
+- [Convert Model to TorchScript Module](models/classification.py)
+- Model Configuration:
+```yaml
+models:
+  - name: mobilenetv3
+    download: <link>
+    stages:
+      input: file
+      preprocess: 
+        default: image_classification
+```
 
 ### Semantic Segmenation
 
-TBD models
+- [LRASPP MobileNetV3 from TorchVision](https://pytorch.org/vision/stable/models/generated/torchvision.models.segmentation.lraspp_mobilenet_v3_large.html#torchvision.models.segmentation.LRASPP_MobileNet_V3_Large_Weights)
+- [Convert Model to TorchScript Module](models/segmentation.py)
+- Model Configuration:
+```yaml
+models:
+  - name: lraspp-mobilenetv3
+    download: <link>
+    stages:
+      input: file
+      preprocess: 
+        default: semantic_segmentation
+```
 
 ### Object Detection
 
-TBD models
+- [SSDLite MobileNetV3 from TorchVision](https://pytorch.org/vision/stable/models/generated/torchvision.models.detection.ssdlite320_mobilenet_v3_large.html#torchvision.models.detection.SSDLite320_MobileNet_V3_Large_Weights)
+- [Convert Model to TorchScript Module](models/detection.py)
+```yaml
+models:
+  - name: ssdlite-mobilenetv3
+    download: <link>
+    stages:
+      input: file
+      preprocess: 
+        default: object_detection
+```
 
 ## Natural Language Processing
 
