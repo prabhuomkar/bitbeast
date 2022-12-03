@@ -1,21 +1,24 @@
 models:
-  - name: torchvision-resnet50
-    download: https://www.dropbox.com/s/tqfc8ou1w3hx4gg/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt?dl=1
-    gpu: true
+  - name: mobilenetv3
+    download: https://www.dropbox.com/s/wud1np4y8r1zkqh/MobileNet_V3.pt?dl=1
+    gpu: false
     stages:
       input: file
       preprocess: 
         default: image_classification
-  - name: custom-resnet50
-    download: https://www.dropbox.com/s/tqfc8ou1w3hx4gg/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt?dl=1
-    gpu: true
+        unsqueeze: 0
+  - name: lraspp-mobilenetv3
+    download: https://www.dropbox.com/s/2eb02iyd8cd9qe7/LRASPP_MobileNet_V3.pt?dl=1
+    gpu: false
     stages:
       input: file
-      preprocess:
-        resize: 299
-        center_crop: 299
-        to_tensor: true
-        normalize:
-          mean: [0.485, 0.456, 0.406]
-          std: [0.229, 0.224, 0.225]
+      preprocess: 
+        default: semantic_segmentation
         unsqueeze: 0
+  - name: ssdlite-mobilenetv3
+    download: https://www.dropbox.com/s/5hk7p8o5y092njc/SSDLite320_MobileNet_V3.pt?dl=1
+    gpu: false
+    stages:
+      input: file
+      preprocess: 
+        default: object_detection

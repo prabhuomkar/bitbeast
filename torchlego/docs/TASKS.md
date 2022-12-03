@@ -15,7 +15,7 @@ Supported Libraries:
 ```yaml
 models:
   - name: mobilenetv3
-    download: <link>
+    download: https://www.dropbox.com/s/wud1np4y8r1zkqh/MobileNet_V3.pt?dl=1
     stages:
       input: file
       preprocess: 
@@ -30,7 +30,7 @@ models:
 ```yaml
 models:
   - name: lraspp-mobilenetv3
-    download: <link>
+    download: https://www.dropbox.com/s/2eb02iyd8cd9qe7/LRASPP_MobileNet_V3.pt?dl=1
     stages:
       input: file
       preprocess: 
@@ -44,7 +44,7 @@ models:
 ```yaml
 models:
   - name: ssdlite-mobilenetv3
-    download: <link>
+    download: https://www.dropbox.com/s/5hk7p8o5y092njc/SSDLite320_MobileNet_V3.pt?dl=1
     stages:
       input: file
       preprocess: 

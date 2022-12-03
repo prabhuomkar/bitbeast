@@ -22,15 +22,14 @@ class SemanticSegmentationModule(torch.nn.Module):
         self.categories = LRASPP_MobileNet_V3_Large_Weights.COCO_WITH_VOC_LABELS_V1.meta[
             "categories"]
 
-    def forward(self, img_tensor, categories: List[str]):
+    def forward(self, img_tensor):
         """Forward Pass"""
         output = self.model(img_tensor)["out"]
-        probabilties = output.softmax(dim=1)
-        result: Dict[str, List[List[float]]] = {}
-        for cls in categories:
-            idx: int = self.categories.index(cls)
-            prob: List[List[float]] = probabilties[0, idx].tolist()
-            result[cls] = prob
+        output = torch.nn.functional.softmax(output, dim=1)
+        output = torch.max(output, dim=1)
+        output = torch.stack(
+            [output.indices.type(output.values.dtype), output.values], dim=3)
+        result: List[List[List[float]]] = output[0].tolist()
         return result
 
 
@@ -47,9 +46,9 @@ def load_and_run():
     model = torch.jit.load(FILE_NAME)
     weights = LRASPP_MobileNet_V3_Large_Weights.COCO_WITH_VOC_LABELS_V1
     preprocess = weights.transforms()
-    img = Image.open('example.jpg')
+    img = Image.open('example2.jpg')
     img_transformed = preprocess(img)
-    print(model(img_transformed.unsqueeze(0), ['diningtable']))
+    print(model(img_transformed.unsqueeze(0)))
 
 
 if __name__ == '__main__':

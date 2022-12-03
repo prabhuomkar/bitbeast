@@ -15,14 +15,15 @@ preprocess, postprocess and PyTorch TorchScript module location as a config for 
 models:
   - name: torchvision-resnet50 <- unique name/slug for the model
     download: http://download-link <- module download link
-    gpu: true
+    gpu: false
     stages:
       input: file <- support for file upload as input while running inference
+      # default pytorch transforms for preprocessing the input
       preprocess:
         default: image_classification <- default torchvision transforms for preprocessing
   - name: custom-resnet50
     download: http://download-link <- module download link
-    gpu: true
+    gpu: false
     stages:
       input: file
       # custom pytorch transforms for preprocessing the input
@@ -38,7 +39,7 @@ models:
 - Run the following command to run an [example configuration](examples/). Note, TorchLego picks
   up config files from `model-config` folder from the root directory.
 ```bash
-docker run --rm --net=host -v ${PWD}/examples:/model-config torchlego:latest
+docker run --rm --net=host -v ${PWD}/examples:/model-config prabhuomkar/torchlego:latest
 ```
 
 ## Contributing

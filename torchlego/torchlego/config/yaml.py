@@ -11,17 +11,20 @@ class StageConfig(BaseModel):
     input: str
     preprocess: Dict[Any, Any]
 
+
 class ModelConfig(BaseModel):
     """Model Config"""
     name: str
     download: str
-    gpu: bool
+    gpu: bool = False
     initialized: bool = False
     stages: StageConfig
+
 
 class YAMLConfig(BaseModel):
     """YAML Config"""
     models: List[ModelConfig]
+
 
 def process_yaml_config(file_contents: Str) -> YAMLConfig:
     """read the yaml file and parse config fields"""
