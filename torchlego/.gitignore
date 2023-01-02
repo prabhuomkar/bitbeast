@@ -56,3 +56,4 @@ venv.bak/
 .ipynb_checkpoints
 .pytest_cache
 *.pt
+model-config

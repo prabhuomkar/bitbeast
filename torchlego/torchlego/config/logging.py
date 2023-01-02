@@ -9,6 +9,7 @@ LOGGING_CONFIG = {
     }
 }
 
+
 def init_logging() -> None:
     """Initialize logging"""
     logging.config.dictConfig(LOGGING_CONFIG)

@@ -8,4 +8,4 @@ COPY requirements.txt /
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY torchlego /
 EXPOSE 8080
-CMD ["python3", "main.py"]
+CMD ["python3", "-m", "torchlego.main"]
