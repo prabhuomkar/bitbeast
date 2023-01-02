@@ -1,14 +1,14 @@
 """TorchLego Core"""
 import os
-from typing import Dict, Any
+from typing import List, Any
 import logging
 import requests
 
 from torch.jit import load
 
-from config import process_yaml_config, ModelConfig
-from core.input import derive_input
-from core.preprocess import derive_preprocess
+from torchlego.config import process_yaml_config, ModelConfig
+from torchlego.core.input import derive_input
+from torchlego.core.preprocess import derive_preprocess
 
 # this will store the derived model ready for execution
 MODELS = {}
@@ -35,7 +35,7 @@ def init_models() -> None:
                 "error creating executable for model: %s", model.name)
 
 
-def get_models() -> Dict[Any, Any]:
+def get_models() -> List[Any]:
     """Get derived models"""
     models = []
     for data in MODELS.values():

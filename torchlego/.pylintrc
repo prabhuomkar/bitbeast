@@ -1,8 +1,8 @@
-[MESSAGES CONTROL]
-ignore-patterns=.*_pb2.py,.*_grpc.py
 [TYPECHECK]
 generated-members=torch.*
 [MASTER]
+ignore=tests,docs,LICENSE
+ignore-patterns=.*_pb2.py,.*_grpc.py,.*.txt,.*file,.*.toml,.*.md
 disable=too-few-public-methods,duplicate-code,missing-timeout,bare-except,wrong-import-position
 extension-pkg-whitelist=pydantic
 [FORMAT]

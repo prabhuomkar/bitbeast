@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message PredictionRequest {
+    string modelName = 1;
+    bytes input = 2;
+}
+
+message PredictionResponse {
+    bytes prediction = 1;
+    optional string error = 2;
+}
+
+message ModelsResponse {
+    string models = 1;
+}
+
+service TorchLego {
+    rpc Models(google.protobuf.Empty) returns (ModelsResponse) {}
+    rpc Prediction(PredictionRequest) returns (PredictionResponse) {}
+}
