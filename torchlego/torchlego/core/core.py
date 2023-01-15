@@ -4,6 +4,7 @@ from typing import List, Any
 import logging
 import requests
 
+import torch
 from torch.jit import load
 
 from torchlego.config import process_yaml_config, ModelConfig
@@ -62,8 +63,10 @@ def create_executable(model: ModelConfig) -> Any:
     downloaded = download_model(model.name, model.download)
     if downloaded:
         model_input = derive_input(model.stages.input)
+        if model.gpu:
+            model_input = model_input.to('cuda')
         preprocess = derive_preprocess(model.stages.preprocess)
-        inference = load(f"{model.name}")
+        inference = load(f"{model.name}", map_location=torch.device('cuda' if model.gpu else 'cpu'))
         return [model_input] + preprocess + [inference]
     return None
 
