@@ -5,9 +5,8 @@ TBD
 
 ## Results
 - C++ JIT
-- NVIDIA Triton Inference Server
 - PyTorch Serve
-- MultiPy
+- NVIDIA Triton Inference Server
 
 ## License
 This project is licensed under [MIT License](LICENSE).
