@@ -44,4 +44,3 @@ def init_api_grpc() -> None:
         TorchLegoService(), server)
     server.add_insecure_port(f"[::]:{port}")
     server.start()
-    server.wait_for_termination()

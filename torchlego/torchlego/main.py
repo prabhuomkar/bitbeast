@@ -1,6 +1,4 @@
 """TorchLego"""
-from multiprocessing import Process
-
 from dotenv import load_dotenv
 load_dotenv("model-config/.env")
 
@@ -12,7 +10,5 @@ if __name__ == '__main__':
 
     init_logging()
     init_models()
-    grpc_process = Process(target=init_api_grpc)
-    grpc_process.start()
-    http_process = Process(target=init_api_http)
-    http_process.start()
+    init_api_grpc()
+    init_api_http()

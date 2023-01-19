@@ -19,6 +19,7 @@ class ModelConfig(BaseModel):
     gpu: bool = False
     initialized: bool = False
     stages: StageConfig
+    precision: str
 
 
 class YAMLConfig(BaseModel):

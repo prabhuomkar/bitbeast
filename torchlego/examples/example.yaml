@@ -1,7 +1,8 @@
 models:
-  - name: mobilenetv3
-    download: https://www.dropbox.com/s/wud1np4y8r1zkqh/MobileNet_V3.pt?dl=1
+  - name: mobilenetv2
+    download: https://www.dropbox.com/s/zbymwc1kusxi5zd/MobileNet_V2.pt?dl=1
     gpu: false
+    precision: default
     stages:
       input: file
       preprocess: 
@@ -10,6 +11,7 @@ models:
   - name: lraspp-mobilenetv3
     download: https://www.dropbox.com/s/2eb02iyd8cd9qe7/LRASPP_MobileNet_V3.pt?dl=1
     gpu: false
+    precision: default
     stages:
       input: file
       preprocess: 
@@ -18,7 +20,17 @@ models:
   - name: ssdlite-mobilenetv3
     download: https://www.dropbox.com/s/5hk7p8o5y092njc/SSDLite320_MobileNet_V3.pt?dl=1
     gpu: false
+    precision: default
     stages:
       input: file
       preprocess: 
         default: object_detection
+  - name: mobilenetv2-fp16
+    download: https://www.dropbox.com/s/vvu6csau8007z5w/MobileNet_V2_FP16_GPU.pt?dl=1
+    gpu: true
+    precision: half # half precision means fp16
+    stages:
+      input: file
+      preprocess: 
+        default: image_classification
+        unsqueeze: 0

@@ -7,7 +7,7 @@ from torchvision import transforms
 from timm import create_model
 
 
-FILE_NAME = 'MobileNet_V2.pt'
+FILE_NAME = 'MobileNet_V2_FP16_GPU.pt'
 
 
 class ImageClassificationModule(torch.nn.Module):
@@ -16,8 +16,7 @@ class ImageClassificationModule(torch.nn.Module):
     def __init__(self) -> None:
         super().__init__()
         self.model = create_model(
-            'mobilenetv2_100', pretrained=True, scriptable=True)
-        self.model.eval()
+            'mobilenetv2_100', pretrained=True, scriptable=True).eval().half().to('cuda')
 
         self.categories = [s.strip() for s in
                            open('imagenet_classes.txt', encoding='utf-8').readlines()]
@@ -54,6 +53,7 @@ def load_and_run():
     ])
     img = Image.open('example.jpg')
     img_transformed = preprocess(img)
+    img_transformed = img_transformed.half().to('cuda')
     print(model(img_transformed.unsqueeze(0)))
 
 

@@ -1,7 +1,9 @@
-Pillow
-pydantic
-python-dotenv
-pyyaml
-sanic
+Pillow==9.0.1
+pydantic==1.10.4
+python-dotenv==0.21.0
+PyYAML==5.4.1
+sanic==22.6.2
+grpcio==1.51.1
+grpcio-tools==1.51.1
 https://download.pytorch.org/whl/cpu/torch-1.13.0%2Bcpu-cp310-cp310-linux_x86_64.whl
 https://download.pytorch.org/whl/cpu/torchvision-0.14.0%2Bcpu-cp310-cp310-linux_x86_64.whl
