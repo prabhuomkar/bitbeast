@@ -6,9 +6,9 @@
 - [x] YAML Configuration: Preprocess, Inference
 - [x] Computer Vision Tasks
 - [x] Release Docker Image (cpu version)
+- [x] GPU support
 - [ ] Error Handling
 - [ ] NLP Tasks
-- [ ] GPU support
 - [ ] Release Docker Image (gpu version)
 
 ## YAML Example
@@ -16,15 +16,17 @@
 ```
 models:
   - name: torchvision-resnet50
-    download: https://www.dropbox.com/s/tqfc8ou1w3hx4gg/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt?dl=1
+    download: https://artifactory-link/model/version.pt
     gpu: true
+    precision: half
     stages:
       input: file
       preprocess:
         default: image_classification
   - name: custom-resnet50
-    download: https://www.dropbox.com/s/tqfc8ou1w3hx4gg/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt?dl=1
+    download: https://artifactory-link/model/version.pt
     gpu: true
+    precision: default
     stages:
       input: file
       preprocess:

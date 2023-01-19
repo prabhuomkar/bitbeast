@@ -6,6 +6,7 @@ RUN apt update && \
     apt clean && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt /
 RUN pip3 install --no-cache-dir -r requirements.txt
-COPY torchlego /
+COPY torchlego /torchlego
 EXPOSE 8080
+EXPOSE 8081
 CMD ["python3", "-m", "torchlego.main"]

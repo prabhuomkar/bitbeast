@@ -14,7 +14,6 @@ from torchlego.core.preprocess import derive_preprocess
 # this will store the derived model ready for execution
 MODELS = {}
 
-
 def init_models() -> None:
     """Derive model by mapping config to executable functions"""
     model_cfg_file = os.getenv("MODEL_CONFIG", "models.yaml")
@@ -63,10 +62,11 @@ def create_executable(model: ModelConfig) -> Any:
     downloaded = download_model(model.name, model.download)
     if downloaded:
         model_input = derive_input(model.stages.input)
-        if model.gpu:
-            model_input = model_input.to('cuda')
         preprocess = derive_preprocess(model.stages.preprocess)
-        inference = load(f"{model.name}", map_location=torch.device('cuda' if model.gpu else 'cpu'))
+        map_device = 'cuda' if model.gpu else 'cpu'
+        preprocess += [lambda input: input.to(map_device)]
+        preprocess += [lambda input: input.half()] if model.precision == 'half' else []
+        inference = load(f"{model.name}", map_location=torch.device(map_device))
         return [model_input] + preprocess + [inference]
     return None
 
