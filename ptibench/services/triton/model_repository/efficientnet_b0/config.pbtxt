@@ -1,4 +1,4 @@
-name: "resnet50"
+name: "efficientnet_b0"
 platform: "pytorch_libtorch"
 max_batch_size : 0
 input [

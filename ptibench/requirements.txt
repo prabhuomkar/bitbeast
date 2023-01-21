@@ -1,0 +1,5 @@
+numpy
+torch
+torch-tensorrt
+torch-model-archiver
+torchserve
