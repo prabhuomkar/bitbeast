@@ -10,6 +10,7 @@ It also acts as a reference kit to generate, run and benchmark your own model in
 | ---------- | --------- | --- | ---- |
 | EfficientNet-B0 | FP32 | True | NVIDIA Triton Inference Server |
 | EfficientNet-B0 | FP32 | True | PyTorch Serve |
+| EfficientNet-B0 | FP32 | True | Vanilla Python gRPC |
 
 ### Generate and Usage
 This section will help you compile and generate modules which can be served.
@@ -26,6 +27,7 @@ exit
 ```
 mv model.pt ../services/triton/model_repository/efficientnet_b0/1/model.pt
 cp ts_model.pt ../services/torchserve/ts_model.pt
+cp ts_model.pt ../services/python-grpc/ts_model.pt
 ```
 
 #### NVIDIA Triton Inference Server
@@ -46,6 +48,8 @@ torch-model-archiver --model-name efficientnet_b0 --version 1.0 --serialized-fil
 docker run --rm -it --gpus all -p 8080:8080 -p 8081:8081 -v ${PWD}/model-store:/home/model-server/model-store \
     pytorch/torchserve:latest-gpu torchserve --model-store /home/model-server/model-store/ --models efficientnet_b0=efficientnet_b0.mar
 ```
+
+#### Python gRPC
 
 ### Running Benchmarks
 This section will help you run benchmark and save results
