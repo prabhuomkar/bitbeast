@@ -99,6 +99,7 @@ locust -f locust_client.py
 - Run benchmarks weekly/on latest versions using common GPU spec
 - Use FP16 for inference as well
 - Generate some fancy graphs using the saved results 
+- Improve the way load testing is done using locust
 
 ## License
 This project is licensed under [MIT License](LICENSE).
