@@ -12,6 +12,15 @@ It also acts as a reference kit to generate, run and benchmark your own model in
 | EfficientNet-B0 | FP32 | True | PyTorch Serve |
 | EfficientNet-B0 | FP32 | True | Vanilla Python gRPC |
 
+## Results
+Note: These results are captured on a machine with Intel i7 CPU, 16GB RAM and NVIDIA RTX 3050Ti GPU using [Locust](https://locust.io/) with 1000 users for 5 minutes.
+
+| Type | Response Time | Total Requests (Request Per Second) |
+| ---- | ------------- | ----------------------------------- |
+| Vanilla Python gRPC | ![Vanilla Python gRPC](results/locust-1000-100-5m/python-grpc.png) | 17340 (43.5) |
+| PyTorch Serve | ![PyTorch Serve](results/locust-1000-100-5m/torchserve.png) | 17493 (44.9) |
+| NVIDIA Triton Inference Server | ![NVIDIA Triton Inference Server](results/locust-1000-100-5m/triton.png) | 28133 (71.9) |
+
 ### Generate and Usage
 This section will help you compile and generate modules which can be served.
 
@@ -23,7 +32,7 @@ cd /scratch_space
 python3 conversion.py
 exit
 ```
-- Copy the triton model in model_repository:
+- Copy the outputs in their respective directory for usage:
 ```
 mv model.pt ../services/triton/model_repository/efficientnet_b0/1/model.pt
 cp ts_model.pt ../services/torchserve/ts_model.pt
@@ -41,6 +50,7 @@ docker run --gpus all --rm -p 8000:8000 -p 8001:8001 -p 8002:8002 -v <absolute_p
 #### TorchServe
 - Generate MAR for running TorchServe:
 ```
+cd services/torchserve
 torch-model-archiver --model-name efficientnet_b0 --version 1.0 --serialized-file ts_model.pt --handler handler.py
 ```
 - Run TorchServe using:
@@ -50,13 +60,42 @@ docker run --rm -it --gpus all -p 8080:8080 -p 8081:8081 -v ${PWD}/model-store:/
 ```
 
 #### Python gRPC
+- Generate Docker Image using:
+```
+cd services/python-grpc
+docker build . -t torch-python-grpc
+```
+- Run it in a container using:
+```
+docker run --rm --gpus all -p 8080:8080 torch-python-grpc
+```
 
 ### Running Benchmarks
 This section will help you run benchmark and save results
 
-TODO(omkar)
+#### NVIDIA Triton Inference Server
+- Run locust load tests using
+```
+cd services/triton
+locust -f locust_client.py
+```
+
+#### TorchServe
+- Run locust load tests using
+```
+cd services/torchserve
+locust -f locust_client.py
+```
+
+#### Python gRPC
+- Run locust load tests using
+```
+cd services/python-grpc
+locust -f locust_client.py
+```
 
 ## TODOs/Improvements
+- Refactor the clients of locust testing to be consistent across all services
 - Run benchmarks weekly/on latest versions using common GPU spec
 - Use FP16 for inference as well
 - Generate some fancy graphs using the saved results 

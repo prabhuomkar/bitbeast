@@ -1,6 +1,6 @@
 from torchvision import transforms
 from PIL import Image
-import tritonclient.http as httpclient
+import tritonclient.grpc as grpcclient
 
 # preprocessing function
 def get_input(img_path='example.jpg'):
@@ -16,11 +16,11 @@ def get_input(img_path='example.jpg'):
 # nvidia triton inference server
 def get_result_triton():
     input = get_input()
-    client = httpclient.InferenceServerClient(url='localhost:8000')
-    inputs = httpclient.InferInput('input__0', input.shape, datatype='FP32')
-    inputs.set_data_from_numpy(input, binary_data=True)
+    client = triton_client = grpcclient.InferenceServerClient(url='localhost:8001')
+    inputs = grpcclient.InferInput('input__0', input.shape, datatype='FP32')
+    inputs.set_data_from_numpy(input)
+    outputs = grpcclient.InferRequestedOutput('output__0', class_count=1000)
     try:
-        outputs = httpclient.InferRequestedOutput('output__0', binary_data=True, class_count=1000)
         results = client.infer(model_name='efficientnet_b0', inputs=[inputs], outputs=[outputs])
         inference_output = results.as_numpy('output__0')
         print(inference_output[:5])
