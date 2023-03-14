@@ -34,9 +34,13 @@ exit
 ```
 - Copy the outputs in their respective directory for usage:
 ```
-mv model.pt ../services/triton/model_repository/efficientnet_b0/1/model.pt
-cp ts_model.pt ../services/torchserve/ts_model.pt
-cp ts_model.pt ../services/python-grpc/ts_model.pt
+mv model_fp32.pt ../services/triton/model_repository/efficientnet_b0/1/model.pt
+cp ts_model_fp32.pt ../services/torchserve/ts_model.pt
+cp ts_model_fp32.pt ../services/python-grpc/ts_model.pt
+OR
+mv model_fp16.pt ../services/triton/model_repository/efficientnet_b0/1/model.pt
+cp ts_model_fp16.pt ../services/torchserve/ts_model.pt
+cp ts_model_fp16.pt ../services/python-grpc/ts_model.pt
 ```
 
 #### NVIDIA Triton Inference Server

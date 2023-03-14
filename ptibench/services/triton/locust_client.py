@@ -20,7 +20,7 @@ def get_input(img_path='example.jpg'):
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
-    input = preprocess(img).numpy()
+    input = preprocess(img).half().numpy()
     return input
 
 class GrpcUser(User):
@@ -38,9 +38,9 @@ class ApiUser(GrpcUser):
     @task
     def get_prediction(self):
         input = get_input()
-        inputs = grpcclient.InferInput('input__0', input.shape, datatype='FP32')
+        inputs = grpcclient.InferInput('input__0', input.shape, datatype='FP16')
         inputs.set_data_from_numpy(input)
-        outputs = grpcclient.InferRequestedOutput('output__0', class_count=1000)
+        outputs = grpcclient.InferRequestedOutput('output__0', class_count=0)
         start_time = time.time()
         try:
             results = self.client.infer(model_name='efficientnet_b0', inputs=[inputs], outputs=[outputs])
