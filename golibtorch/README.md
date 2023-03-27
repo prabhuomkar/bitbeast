@@ -9,7 +9,13 @@ PyTorch Model Inference in Golang
 
 ## Getting Started 
 
-### Releasing Model
+### Downloading LibTorch (PyTorch C++ API)
+Run following command to download and setup LibTorch (CPU version):
+```
+make deps
+```
+
+### Generating TorchScript Module
 - Refer [model/torchscript.py](model/torchscript.py) for conversion of torchvision model to TorchScript module
 - TorchScript module is written as follows:
 ```python
@@ -34,10 +40,10 @@ cd model
 python torchscript.py run
 ```
 
-## Example
+### Run Example
 Run the program with sample input:
 ```bash
-go run main.go
+make run
 ```
 
 ## License
