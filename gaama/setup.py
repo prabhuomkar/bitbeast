@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 
 
-version = "0.6.0"
+version = "0.7.0"
 package_name = "gaama"
 
 cwd = os.path.dirname(os.path.abspath(__file__))
