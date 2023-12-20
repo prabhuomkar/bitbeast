@@ -1,5 +1,5 @@
 grpcio==1.60.0
 grpcio-tools==1.60.0
 Pillow==10.1.0
-https://download.pytorch.org/whl/cpu/torch-1.12.1%2Bcpu-cp310-cp310-linux_x86_64.whl
-https://download.pytorch.org/whl/cpu/torchvision-0.13.1%2Bcpu-cp310-cp310-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torch-2.1.2%2Bcpu-cp310-cp310-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.16.2%2Bcpu-cp310-cp310-linux_x86_64.whl

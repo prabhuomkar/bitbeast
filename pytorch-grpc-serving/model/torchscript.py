@@ -1,5 +1,6 @@
 """PyTorch Serving Example Model"""
 import sys
+from typing import Dict, Any
 
 from PIL import Image
 import torch
@@ -21,7 +22,7 @@ class ResNet50QuantizedModule(torch.nn.Module):
         self.categories = [s.strip() for s in \
             open('imagenet_classes.txt', encoding='utf-8').readlines()]
 
-    def forward(self, img_tensor, topk=5):
+    def forward(self, img_tensor: torch.Tensor, topk: int=5) -> Dict[str, Any]:
         """Forward Pass"""
         output = self.model(img_tensor)
         probabilities = torch.nn.functional.softmax(output, dim=1)
