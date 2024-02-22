@@ -12,6 +12,7 @@ For example, you can use some of these projects in your ML training workflow, CI
 - [TorchLego: Model Serving as Code for PyTorch](torchlego)
 - [PTIBench: PyTorch Inference Server Benchmark](ptibench)
 - [golibtorch: PyTorch Model Inference in Golang](golibtorch)
+- [pytorch.cpp: PyTorch Model Inference using GGML](pytorch.cpp)
 
 ## License
 This repository does not have a common license. Check individual projects for their licensing.
