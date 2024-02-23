@@ -21,5 +21,6 @@ venv.bak/
 *.pt
 *.pth
 *.bin
+*.gguf
 ggml/
 build/

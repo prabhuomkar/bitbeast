@@ -1,3 +1,4 @@
+import sys
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -6,7 +7,15 @@ from torchviz import make_dot
 
 NUM_EPOCHS = 10000
 LEARNING_RATE = 0.01
-SAVED_MODEL_FILE_NAME = "model.pth"
+SAVED_MODEL_FILE_NAME = "assets/model.pth"
+INPUTS = {
+    "xor": [[[0, 0], [0, 1], [1, 0], [1, 1]], [[0], [1], [1], [0]]],
+    "and": [[[0, 0], [0, 1], [1, 0], [1, 1]], [[0], [0], [0], [1]]],
+    "or": [[[0, 0], [0, 1], [1, 0], [1, 1]], [[0], [1], [1], [1]]]
+}
+
+type = sys.argv[1] if len(sys.argv) > 1 else "xor"
+print(f"Truth Table: {type}")
 
 class Model(nn.Module):
     def __init__(self):
@@ -23,14 +32,15 @@ class Model(nn.Module):
         x = self.sigmoid(x)
         return x
 
-inputs = torch.tensor([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=torch.float32)
-labels = torch.tensor([[0], [1], [1], [0]], dtype=torch.float32)
+inputs = torch.tensor(INPUTS[type][0], dtype=torch.float32)
+labels = torch.tensor(INPUTS[type][1], dtype=torch.float32)
 
 model = Model()
 
 criterion = nn.BCELoss()
 optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
 
+print(f"Training for {NUM_EPOCHS} epochs")
 for epoch in range(NUM_EPOCHS):
     outputs = model(inputs)
     loss = criterion(outputs, labels)
