@@ -1,6 +1,8 @@
 # pytorch.cpp
 Running PyTorch Models for Inference using GGML
 
+![Example](example.png)
+
 ## Directory Structure
 - [conversion.py](conversion.py) - Converts weights of a PyTorch model to GGML format
 - [model.py](model.py) - Sample PyTorch model for training a neural network to learn 2 input truth table
