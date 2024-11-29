@@ -5,7 +5,7 @@ import json
 
 import grpc
 from PIL import Image
-from torchvision.models.quantization import ResNet50_QuantizedWeights
+from torchvision.models import MobileNet_V3_Small_Weights
 from torch.jit import load
 import inference_pb2
 from inference_pb2_grpc import InferenceServicer, add_InferenceServicer_to_server
@@ -18,8 +18,8 @@ class PyTorchInferenceServicer(InferenceServicer):
     def __init__(self) -> None:
         # load model
         try:
-            self.model = load('./model/ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt')
-            self.weights = ResNet50_QuantizedWeights.IMAGENET1K_FBGEMM_V2
+            self.model = load('./model/MobileNet_V3_Small_IMAGENET1K_V1.pt')
+            self.weights = MobileNet_V3_Small_Weights.IMAGENET1K_V1
             self.transforms = self.weights.transforms()
         except:
             print('some error loading model')

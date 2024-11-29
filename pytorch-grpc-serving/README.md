@@ -59,7 +59,7 @@ python client.py <url>
 ```
 
 ## Example
-- Example server with quantized ResNet50 is hosted on [Fly](https://fly.io).
+- Example server with quantized MobileNet V3 Small is hosted on [Fly](https://fly.io).
 - Configure client to run inferencing on the hosted server:
 ```
 python client.py pytorch-serving.fly.dev:8000

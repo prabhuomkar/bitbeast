@@ -4,18 +4,18 @@ from typing import Dict, Any
 
 from PIL import Image
 import torch
-from torchvision.models.quantization import resnet50, ResNet50_QuantizedWeights
+from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights
 
 
-FILE_NAME = 'ResNet50_Quantized_IMAGENET1K_FBGEMM_V2.pt'
+FILE_NAME = 'MobileNet_V3_Small_IMAGENET1K_V1.pt'
 
-class ResNet50QuantizedModule(torch.nn.Module):
+class MobileNetV3SmallModule(torch.nn.Module):
     """EfficientNet TorchScript Module"""
     def __init__(self) -> None:
-        super(ResNet50QuantizedModule, self).__init__()
+        super(MobileNetV3SmallModule, self).__init__()
 
         # load the pretrained model
-        self.model = resnet50(weights=ResNet50_QuantizedWeights.IMAGENET1K_FBGEMM_V2, quantize=True)
+        self.model = mobilenet_v3_small(weights=MobileNet_V3_Small_Weights.IMAGENET1K_V1)
         self.model.eval()
 
         # map imagenet classes to labels
@@ -34,14 +34,14 @@ class ResNet50QuantizedModule(torch.nn.Module):
 def script_and_save():
     """Initialize pytorch model with weights, script it and save the torchscript module"""
     print('scripting and saving torchscript module')
-    scripted_module = torch.jit.script(ResNet50QuantizedModule())
+    scripted_module = torch.jit.script(MobileNetV3SmallModule())
     scripted_module.save(FILE_NAME)
 
 def load_and_run():
     """Loads the saved torchscript module and runs sample image"""
     print('loading and running torchscript module')
     model = torch.jit.load(FILE_NAME)
-    weights = ResNet50_QuantizedWeights.IMAGENET1K_FBGEMM_V2
+    weights = MobileNet_V3_Small_Weights.IMAGENET1K_V1
     preprocess = weights.transforms()
     img = Image.open('example.jpg')
     img_transformed = preprocess(img)
