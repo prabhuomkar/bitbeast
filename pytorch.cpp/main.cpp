@@ -1,4 +1,5 @@
-#include "ggml/ggml.h"
+#include "ggml.h"
+#include "ggml-cpu.h"
 
 #include <cmath>
 #include <cstdio>
@@ -163,7 +164,7 @@ float predict(const ptmodel & model, std::vector<float> table_input) {
     ggml_build_forward_expand(gf, probs);
     ggml_graph_compute_with_ctx(ctx0, gf, 1);
 
-    ggml_graph_print(gf);
+    // ggml_graph_print(gf);
     // ggml_graph_dump_dot(gf, NULL, "model.dot");
     // ggml_graph_export(gf, "model.ggml");
 
