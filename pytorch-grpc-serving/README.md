@@ -58,17 +58,5 @@ python client.py <url>
 # python client.py localhost:8000
 ```
 
-## Example
-- Example server with quantized MobileNet V3 Small is hosted on [Fly](https://fly.io).
-- Configure client to run inferencing on the hosted server:
-```
-python client.py pytorch-serving.fly.dev:8000
-```
-- Example Output:
-```
-health: UP
-prediction: {"pizza": 0.44644981622695923, "potpie": 0.009865873493254185, "hot pot": 0.007180684246122837, "consomme": 0.005226321052759886, "spatula": 0.0047011710703372955}
-```
-
 ## License
 This project is licensed under [MIT License](LICENSE).
