@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 
 
-version = "0.7.1"
+version = "0.7.2"
 package_name = "gaama"
 
 cwd = os.path.dirname(os.path.abspath(__file__))
@@ -27,14 +27,13 @@ setup(
     description="GitHub-as-Artifactory for Model Artifacts",
     long_description=readme,
     long_description_content_type="text/markdown",
-    license="Apache License 2.0",
+    license="Apache-2.0",
     packages=find_packages(exclude=("examples")),
     zip_safe=True,
     install_requires=["requests"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License",
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
