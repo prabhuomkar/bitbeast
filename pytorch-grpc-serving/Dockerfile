@@ -1,7 +1,9 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 ADD requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
-COPY *.py /
-COPY model/*.pt /model/
+COPY *.py ./
+COPY model/*.pte /model/
+COPY model/*.txt /model/
 EXPOSE 8000
-CMD ["python", "server.py"]
+ENV PYTHONUNBUFFERED=1
+CMD ["python", "-u", "server.py"]

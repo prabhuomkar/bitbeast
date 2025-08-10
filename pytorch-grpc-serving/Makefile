@@ -8,4 +8,4 @@ lint:
 	@pylint *.py
 
 build:
-	@docker build . -t pytorch-serving
+	@docker build --no-cache --platform linux/amd64 . -t pytorch-serving

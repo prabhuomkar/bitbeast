@@ -18,4 +18,4 @@ venv.bak/
 # Other
 .DS_Store
 .ipynb_checkpoints
-*.pt
+*.pte
